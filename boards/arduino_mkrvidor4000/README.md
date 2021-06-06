@@ -3,9 +3,20 @@
 This crate provides a type-safe API for working with the [Arduino MKR Vidor board](https://store.arduino.cc/usa/mkr-vidor-4000).
 
 ## Examples
+### Blinky Basic (HF2)
+#### Prerequisites
+* Install the cross compile toolchain `rustup target add thumbv6m-none-eabi`
+* Install [cargo-hf2 the hf2 bootloader flasher tool](https://crates.io/crates/cargo-hf2) however your platform requires
+* Flash my [UF2 bootloader](https://github.com/JJTech0130/uf2-samdx1/releases/tag/v3.13.0-9-g2fd0593) to the Vidor
+
+#### Uploading
+* Change to the correct subdirectory: `cd boards/arduino_mkrvidor4000`
+* Put the device in bootloader mode by pressing the reset button twice
+* Run `cargo hf2 --pid 0x8056 --vid 0x2341 --release --example blinky_basic`
+
 ### Blinky Basic
 #### Requirements
- - Arduino IDE installed
+ - Arduino IDE insalled
     - samd package installed (You can do this by going to Tools->Board->BoardManager and then searching for `samd`
     - Now the arduino distribution contains bossac.exe in `ArduinoData/packages/arduino/tools/bossac/1.7.0[-arduino3]/` add it to your path
        - **linux**: `ArduinoData` is likely something like `~/.arduino15/`
